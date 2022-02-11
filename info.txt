@@ -1,0 +1,8 @@
+// Ceci est une annotation, ce n'est pas un commentaire : l'annotation ci-dessous doit être complete sinon la page ne s affiche pas :
+    
+    /**
+     * @Route("/", name ="home")
+     */
+
+
+Doctrine  est un mappeur relationnel objet (ORM) pour PHP 7.1+ qui fournit une persistance transparente pour les objets PHP. Il repose sur une puissante couche d'abstraction de base de données (DBAL). L'une de ses fonctionnalités clés est la possibilité d'écrire des requêtes de base de données dans un dialecte SQL orienté objet propriétaire appelé Doctrine Query Language (DQL), inspiré du HQL d'Hibernate. Cela offre aux développeurs une alternative puissante à SQL qui maintient la flexibilité sans nécessiter de duplication de code inutile.
