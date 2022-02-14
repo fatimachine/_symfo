@@ -1,20 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello !{% endblock %}
+{% block title %}Liste des Articles{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<h1 class="display-4 text-center bg-primary my-3"></h1>
+<div class="album py-5 bg-light">
+        <div class="container">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+          <div class="row">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/_symfo/blog/src/Controller/BlogController.php'|file_link(0) }}">src/Controller/BlogController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/_symfo/blog/templates/blog/index.html.twig'|file_link(0) }}">templates/blog/index.html.twig</a></code></li>
-    </ul>
-</div>
+          {% for item in articles %}
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{{item.image}}" alt="Card image cap">
+                <div class="card-body">
+                <h3> {{item.title}}</h3>
+                  <p class="card-text">Ce n'est pas pour gagner de l'argent qu'il faudrait de l'enthousiasme, c'est pour le dépenser.</p>
+
+      <div class="row my-2 text-center text-danger">
+                       <i class="italic">écrit par {{item.author | upper}}</i>
+         </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                 
+                    <div class="btn-group">
+                    
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('show', {'id':item.id}) }}">Voir</a></button>
+
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Modifier</button>
+                    </div>
+                    <small class="text-muted">{{item.createdAt| date('d/m/Y')}}- {{item.createdAt| date('H:i:s')}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+             {% endfor %}
+        </div>
+
+        <figure class="text-center">
+  <blockquote class="blockquote">
+    <p class="mb-0">"Pour être irremplaçable, il faut être différente."</p>
+  
+  </blockquote>
+  <figcaption class="blockquote-footer">
+    Gabrielle famous in- <cite title="Source Title">Coco Chanel- </cite>
+  </figcaption>
+</figure>
+    </div>        
 {% endblock %}
+

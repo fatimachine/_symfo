@@ -6,3 +6,6 @@
 
 
 Doctrine  est un mappeur relationnel objet (ORM) pour PHP 7.1+ qui fournit une persistance transparente pour les objets PHP. Il repose sur une puissante couche d'abstraction de base de données (DBAL). L'une de ses fonctionnalités clés est la possibilité d'écrire des requêtes de base de données dans un dialecte SQL orienté objet propriétaire appelé Doctrine Query Language (DQL), inspiré du HQL d'Hibernate. Cela offre aux développeurs une alternative puissante à SQL qui maintient la flexibilité sans nécessiter de duplication de code inutile.
+
+
+Fixtures (jeu de données) est un ensemble de données qui permet d’avoir un environnement de développement proche d’un environnement de production avec des fausses données.

@@ -1,0 +1,45 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello !{% endblock %}
+
+{% block body %}
+
+{# Syntaxe du moteur Twig #}
+
+{# Commentaires sur Twig #}
+
+<div class="container">
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+</div>
+
+
+<h1> {{ titre1 }}</h1>  {# Ici nous interpolons la variable titre1 que nous a envoyé la fonction render() de 'home' depuis notre BlogController #}
+
+{% if age < 18 %}
+
+<p clas="alert alert-danger"> Vous êtes mineur, accès interdit </p>
+
+{% else %}
+
+<div class="alert alert-dismissible alert-success">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <strong>Bienvenue sur mon blog !</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+</div>
+<div class="p-5 bg-light" >
+<div class="container">
+ <h2 class="display-3"> Desert paradise</h2>
+    <h5 class="card-title">Card title</h5>
+       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a class="btn btn-primary btn-lg" href="{{ path('blog')}}"" role="button">+ D'ARTICLES</a>
+  </div>
+  </div>
+
+
+
+
+{% endif %}
+
+
+{% endblock %}

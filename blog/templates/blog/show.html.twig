@@ -1,0 +1,42 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello !{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+</div>
+
+
+<h1 class="display-4 text-center"> {{ article.title}}</h1>  {# Ici nous interpolons la variable titre1 que nous a envoyé la fonction render() de 'home' depuis notre BlogController #}
+
+<div class="row">
+           <div class="col-md-8 rounded mx-auto">
+        <div class="card text-white bg-primary mb-4">
+          <div class="card-header">{{ article.author}}</div>
+            <img class="card-img-top" src="{{article.image}}" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">{{ article.title}}</h4>
+            <p class="card-text">{{ article.content}}</p>
+            <p>“Rien au monde ne vaut qu'on se détourne de ce qu'on aime.”</p>
+          </div>
+        </div>
+             <div class="btn-group">
+                    
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('blog') }}">retour articles</a></button>
+
+                  
+                    </div>
+                    <small class="text-muted">{{article.createdAt| date('d/m/Y')}}- {{article.createdAt| date('H:i:s')}}</small>
+                  </div>
+</div>
+    
+    
+</div>
+
+
+{% endblock %}
