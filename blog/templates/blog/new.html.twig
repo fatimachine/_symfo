@@ -12,7 +12,23 @@
 </div>
 
 
-<h1 class="display-4 text-center"> {{ article.title}}</h1>  {# Ici nous interpolons la variable titre1 que nous a envoyé la fonction render() de 'home' depuis notre BlogController #}
+<h1 class="display-4 text-center">         {% if modeEdit %}Modifier  {% else %}Ajouter          {% endif %} un article</h1>  {# Ici nous interpolons la variable titre1 que nous a envoyé la fonction render() de 'home' depuis notre BlogController #}
+{{ form_start(formulaire, {'attr': {'class': 'col-md-5 mx-auto'} } ) }}
+
+        {{ form_row(formulaire.title, {'attr' : {'placeholder' : 'Veillez saisir un titre'}, 'label' : 'Titre' }) }}
+
+        {{ form_row(formulaire.content, {'attr' : {'placeholder' : 'Saisissez votre contenu'}, 'label' : 'Contenu de l\'article' }) }}
+
+        {{ form_row(formulaire.image, { 'label' : 'Image' }) }}
+
+        {{ form_row(formulaire.author, {'attr' : {'placeholder' : 'Votre Nom'}, 'label' : 'Auteur' }) }}
+          {% if modeEdit %}
+
+        <button type="submit" class="btn btn-sm btn-outline-warning">Modifier</button>
+              {% else %}
+        <button type="submit" class="btn btn-sm btn-outline-primary">Ajoutez</button>
+           {% endif %}
+        {{form_end(formulaire)}}
 
 
 {% endblock %}

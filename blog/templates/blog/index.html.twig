@@ -3,7 +3,12 @@
 {% block title %}Liste des Articles{% endblock %}
 
 {% block body %}
-<h1 class="display-4 text-center bg-primary my-3"></h1>
+<h1 class="display-4 text-center bg-primary my-3">Liste des Articles</h1>
+
+     <div class="row my-5 col-md-4">
+     <a class ="btn btn-secondary text-center" href="{{path('new')}}" role="button">Nouvel Article</a>
+     </div>
+
 <div class="album py-5 bg-light">
         <div class="container">
 
@@ -15,7 +20,7 @@
                 <img class="card-img-top" src="{{item.image}}" alt="Card image cap">
                 <div class="card-body">
                 <h3> {{item.title}}</h3>
-                  <p class="card-text">Ce n'est pas pour gagner de l'argent qu'il faudrait de l'enthousiasme, c'est pour le dépenser.</p>
+                  <p class="card-text">{{item.content}}</p>
 
       <div class="row my-2 text-center text-danger">
                        <i class="italic">écrit par {{item.author | upper}}</i>
@@ -26,7 +31,7 @@
                     
                       <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('show', {'id':item.id}) }}">Voir</a></button>
 
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Modifier</button>
+                         <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('edit', {'id':item.id}) }}">Modifier</a></button>
                     </div>
                     <small class="text-muted">{{item.createdAt| date('d/m/Y')}}- {{item.createdAt| date('H:i:s')}}</small>
                   </div>
@@ -38,7 +43,7 @@
 
         <figure class="text-center">
   <blockquote class="blockquote">
-    <p class="mb-0">"Pour être irremplaçable, il faut être différente."</p>
+    <p class="mb-0">"Prenez mes idées, j’en aurai d’autres."</p>
   
   </blockquote>
   <figcaption class="blockquote-footer">
