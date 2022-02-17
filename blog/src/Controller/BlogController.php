@@ -80,20 +80,17 @@ class BlogController extends AbstractController
             $form = $this->createForm(ArticlesFormType::class,$articleNew); //createForm() prend en paramètre le type de formulaire et la classe sur laquelle on injectera les valeurs entrée dans les inputs (name="title",name="content",etc)
 
             // dd($form);
-
             $form->handleRequest($request);//On pioche la méthode handleRequest()de la classeRequest(composant Htppfoundation).Cela va nous permettre de récupérer chaque saisie dans le formulaire ($_POST['title'], $_POST['content']etc) et de les binder (binValue)directement dans les setters correspondant à $articleNew($_POST['title']=> Articles->setTitle,etc).
 
              // dd($request);
              if($form->isSubmitted() && $form->isValid())
              
              {
-             
+            
                 if(!$articleNew->getId()) {
 
                     $articleNew->setCreatedAt(new \Datetime);
                 }
-                
-
                  $manager->persist($articleNew); // on met les donnéees récupérées dans $articleNew en mémoire avant envoi en BDD 
 
                  $manager->flush();// on insert tout dans notre table articles en BDD.
@@ -102,10 +99,7 @@ class BlogController extends AbstractController
                     return $this->redirectToRoute('show', [
                         'id'=> $articleNew->getId() // on recupère l'id de l'article que l'on vient d'inserer en base de données 
                     ]);
-
              }
-
-
 
        return $this->render('blog/new.html.twig',[
         'formulaire'=>$form->createView(), // ici on renvoie le formulaire $form avec tous les champs requis

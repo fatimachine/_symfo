@@ -58,15 +58,15 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ path('new')}}">Ajouter un article</a>
         </li>
-          {% if  is_granted("ROLE_ADMIN") %}
+       
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Back-office</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Modification des articles</a>
+            <a class="dropdown-item" href="{{path('admin_articles')}}">Modification des articles</a>
             <a class="dropdown-item" href="#">Modification des commentaires</a>
-            <a class="dropdown-item" href="#">Enfants</a>
+           
         </li>
-                {% endif %}
+              
 
               {% if  app.user %}
         <li class="nav-item">

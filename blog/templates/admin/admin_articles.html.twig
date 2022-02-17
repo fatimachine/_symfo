@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+{% for message in app.flashes('success') %}
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <strong>{{message}}</strong> 
+</div>
+
+{% endfor %}
+
+<script>
+  var alertList = document.querySelectorAll('.alert');
+  alertList.forEach(function (alert) {
+    new bootstrap.Alert(alert)
+  })
+</script>
+
+<div class="col-md">
+    <table class="table table-striped rounded bg-primary">
+        <thead class="bg-secondary text-center">
+            <tr>
+            {% for column in columns %}
+                {% if column == 'createdAt' %}
+                <th>DATE DE CREATION</th>
+        {% else %}
+                <th>{{column | upper}}</th>
+                    {% endif %}
+                    {% endfor %}
+                <th>ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
+                 {% for article in articles %}
+                <tr class="text-center align-middle">
+               
+                <td>{{article.id}}</td>
+                <td>{{article.title}}</td>
+                <td>{{article.content}}</td>
+                <td><img style="width:150px;max-height:70px; object-fit:contain;" src="{{article.image}}"></td>
+                <td>{{article.author}}</td>
+                <td>{{article.createdAt | date("d/m/Y à H:i:s") }}</td>
+                <td class="row" >
+                    <a href="{{ path('admin_edit_articles', {'id': article.id} ) }}" class="btn btn-warning  text-white">Modifier</a> 
+                    <a href="{{ path('admin_remove_article', {'id': article.id} ) }}" class="btn btn-primary  text-white">Supprimer</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
