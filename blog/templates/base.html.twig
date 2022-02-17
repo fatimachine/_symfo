@@ -27,31 +27,53 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor03">
-      <ul class="navbar-nav me-auto">
+      <ul class="ml-5 navbar-nav me-auto">
+               {# {% if  app.user %} #}
         <li class="nav-item">
-          <a class="nav-link active" href="{{ path('home')}}">Mon Compte
-            <span class="visually-hidden">(current)</span>
+  
+          <a class="nav-link " href="#">Mon Compte
+          {# {{ path('profil')}} #}
           </a>
+      
+
         </li>
+         
+  {% if not app.user %}
+              <li class="nav-item">
+            
+          <a class="nav-link" href="{{ path('register')}}">Créer votre compte /</a> 
+  
+
+        </li>
+        {% endif %}
+        {% if  app.user %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Identifiez-vous</a>
+          <a class="nav-link" href="{{ path('login')}}">Identifiez-vous</a> 
+          
         </li>
+        {% endif %}
         <li class="nav-item">
          <a class="nav-link" href="{{ path('blog')}}">Articles</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ path('new')}}">Ajouter un article</a>
         </li>
+          {% if  is_granted("ROLE_ADMIN") %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catégories</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Back-office</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Femme</a>
-            <a class="dropdown-item" href="#">Homme</a>
+            <a class="dropdown-item" href="#">Modification des articles</a>
+            <a class="dropdown-item" href="#">Modification des commentaires</a>
             <a class="dropdown-item" href="#">Enfants</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Home/Maison</a>
-          </div>
         </li>
+                {% endif %}
+
+              {% if  app.user %}
+        <li class="nav-item">
+          <a class="nav-link " href="{{path('logout')}}">Déconnexion</a>
+        </li>
+         {% endif %}
+
       </ul>
       <form class="d-flex" wtx-context="81597342-5FD8-456A-9959-2B0C498C6255">
         <input class="form-control me-sm-2" type="text" placeholder="Recherche" wtx-context="F0164AD1-4633-4678-8D40-5EECB60B17A3">

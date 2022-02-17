@@ -35,13 +35,13 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
+
     private $password;
 
     /**
      * 
      */
-
-    private $confirmPassword;
+   public $confirmPassword;
 
     public function getId(): ?int
     {

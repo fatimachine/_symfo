@@ -17,24 +17,26 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher,EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $hash, EntityManagerInterface $entityManager): Response
     {
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-            $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+
+            $passwordHash = $hash->hashPassword($user, $user->getPassword());
+
+            $user->setPassword($passwordHash);
+            $user->setRoles(["ROLE_USER"]);
 
             $entityManager->persist($user);
-            $entityManager->flush();
+            $entityManager->flush();   // $_SESSION ['success'] =  "Félicitations! votre compte a bien été enregistré \r \n vous pouvez dès à présent vous connecter"
             // do anything else you need here, like send an email
+
+            $this->addFlash('success', "Félicitations! votre compte a bien été enregistré \r \n vous pouvez dès à présent vous connecter");
+
+            return $this->redirectToRoute('login');
 
         }
 
